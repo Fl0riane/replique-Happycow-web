@@ -5,11 +5,59 @@
   width: 671px;
   overflow: hidden;
   gap: 1px;
-  border: solid 1px red;
+  position: relative;
 }
 
 .littlePic {
   height: 100%;
   width: 167px;
   object-fit: cover;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 64px;
+}
+.leftCol {
+  width: 671px;
+}
+.leftCol button {
+  all: unset;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  opacity: 60%;
+  color: white;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 5px;
+  border-radius: 6px;
+}
+.leftCol button p {
+  color: white;
+}
+
+.leftCol > p {
+  margin-top: 20px;
+}
+
+.rightCol span {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.rightCol :first-child p {
+  padding-top: 20px;
+}
+
+.rightCol a {
+  all: unset;
+  padding: 10px 0;
+  color: #9069cd;
+  font-weight: bold;
 }

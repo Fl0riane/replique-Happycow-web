@@ -1,4 +1,5 @@
 import GoogleMapReact from "google-map-react";
+import "./map.css";
 const AnyReactComponent = ({ lat, lng }) => (
   <div>
     {lat}
@@ -17,13 +18,23 @@ const SimpleMap = ({ lat, lng }) => {
 
   return (
     // Important! Always set the container height explicitly
-    <div style={{ height: "400px", width: "50%" }}>
+    <div
+      style={{
+        height: "200px",
+        width: "345px",
+      }}
+    >
       <GoogleMapReact
         bootstrapURLKeys={{ key: "" }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
-        <AnyReactComponent lat={lat} lng={lng} text="My Marker" />
+        <AnyReactComponent
+          className="googleMap"
+          lat={lat}
+          lng={lng}
+          text="My Marker"
+        />
       </GoogleMapReact>
     </div>
   );

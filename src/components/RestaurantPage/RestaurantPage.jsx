@@ -1,22 +1,25 @@
 import "./restaurantPage.css";
 import displayStars from "../../utils/displaystars";
-import displayVeg from "../../utils/displayVeg";
+import displayVeg from "../../utils/Display/displayVeg";
 import Map from "../Map/Map";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 const restaurantPage = ({ elem, index }) => {
   const allImg = elem.pictures;
   const hiddenpic = allImg.length - 4;
-  console.log(hiddenpic);
-
-  console.log(elem);
+  const description = elem.description;
+  let findOpen = description.indexOf("Open");
+  const open = description.slice(findOpen);
+  const [hidden, setHidden] = useState(true);
   return (
-    <section className="container">
+    <main className="container">
       <div>
         <h2>{elem.name}</h2>
-
         <div>{displayStars(elem.rating)}</div>
-        <span>{displayVeg(elem.type)} </span>
-        <section>
+        <span className="veg">{displayVeg(elem.type)} </span>
+      </div>
+      <div className="row">
+        <section className="leftCol">
           <div className="blocImg">
             {allImg.map((elem, index) => {
               return (
@@ -25,19 +28,50 @@ const restaurantPage = ({ elem, index }) => {
                 </div>
               );
             })}
+            {allImg.length > 4 && (
+              <button
+                onClick={() => {
+                  setHidden(false);
+                }}
+              >
+                <FontAwesomeIcon icon="fa-solid fa-camera" />
+                <h3>All Photos</h3> <p>({hiddenpic})</p>
+              </button>
+            )}
           </div>
-          {allImg.length > 4}
-          <button>
-            <h3>all photos</h3> <p>{hiddenpic}</p>
-          </button>
 
           <p>{elem.description}</p>
         </section>
-        <section>
+        <section className="rightCol">
           <Map lng={elem.location.lng} lat={elem.location.lat} />
+          <div>
+            <span>
+              <FontAwesomeIcon icon="fa-solid fa-location-dot" />
+              <p>{elem.address}</p>
+            </span>
+
+            <span>
+              <FontAwesomeIcon icon="fa-solid fa-clock" />
+              <p>{open}</p>
+            </span>
+            <span>
+              <FontAwesomeIcon icon="fa-solid fa-phone" />
+              <p>{elem.phone}</p>
+            </span>
+
+            <span>
+              <FontAwesomeIcon icon="fa-solid fa-link" />
+              <a href={elem.website}> {elem.website}</a>
+            </span>
+
+            <span>
+              {/* <FontAwesomeIcon icon="fa-brands fa-facebook-f" /> */}
+              <a href={elem.facebook}> {elem.facebook}</a>
+            </span>
+          </div>
         </section>
       </div>
-    </section>
+    </main>
   );
 };
 

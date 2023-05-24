@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import displayStars from "../../utils/displaystars";
 import "./restaurantCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import displayLogo from "../../utils/displayLogo";
 
 const RestaurantCard = (props, index) => {
   // console.log(props);
@@ -17,7 +18,12 @@ const RestaurantCard = (props, index) => {
         </Link>
       </div>
       <div>
-        <h3>{props.elem.name}</h3>
+        <span className="title">
+          <div> {displayLogo(props.elem.type)}</div>
+
+          <h4>{props.elem.name}</h4>
+        </span>
+
         <div>{displayStars(props.elem.rating)} </div>
         <p>{props.elem.description}</p>
       </div>
