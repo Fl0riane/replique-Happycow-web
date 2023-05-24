@@ -1,0 +1,15 @@
+.blocImg {
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  width: 671px;
+  overflow: hidden;
+  gap: 1px;
+  border: solid 1px red;
+}
+
+.littlePic {
+  height: 100%;
+  width: 167px;
+  object-fit: cover;
+}

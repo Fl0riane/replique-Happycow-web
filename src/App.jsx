@@ -14,19 +14,19 @@ import "./App.css";
 import Home from "./pages/Home";
 import Header from "./components/Header/Header";
 import Restaurant from "./pages/Restaurant";
-
-import data from "./assets/data.json";
+import Modal from "./components/Modal/Modal";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [visible, setVisible] = useState(false);
 
   return (
     <Router>
-      <Header />
+      <Header visible={visible} setVisible={setVisible} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/restaurant/:id" element={<Restaurant />} />
       </Routes>
+      {visible && <Modal setVisible={setVisible} />}
     </Router>
   );
 }

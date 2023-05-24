@@ -1,8 +1,7 @@
-import RestaurantCard from "../components/RestaurantCard/RestaurantCard";
 import { useParams } from "react-router-dom";
-import data from "../assets/data.json";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import RestaurantPage from "../components/RestaurantPage/RestaurantPage";
 
 const Restaurant = ({ placeId }) => {
   const [data, setData] = useState();
@@ -18,6 +17,7 @@ const Restaurant = ({ placeId }) => {
         );
         setData(response.data);
         console.log(response.data);
+
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -33,12 +33,14 @@ const Restaurant = ({ placeId }) => {
       <section className="container ">
         <div className=" wrap">
           {data.map((elem) => {
-            console.log(id);
-            console.log("log elem", elem.placeId);
-            console.log("log ", elem.name);
-            return id === elem.placeId && <h3>{elem.name}</h3>;
+            return (
+              id === elem.placeId.toString() && (
+                <RestaurantPage key={elem.placeId} elem={elem} />
+              )
+            );
           })}
         </div>
+        {/* <div>{data.find((element) => element.placeId.toString() === id)}</div> */}
       </section>
     </div>
   );

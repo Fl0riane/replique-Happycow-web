@@ -4,7 +4,7 @@ import "./restaurantCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const RestaurantCard = (props, index) => {
-  console.log(props);
+  // console.log(props);
 
   return (
     <section className="bloc" key={props.elem.placeId}>
@@ -12,17 +12,13 @@ const RestaurantCard = (props, index) => {
         <button>
           <FontAwesomeIcon icon="fa-regular fa-heart" />
         </button>
-        <Link
-          to={`/restaurant/${props.elem.placeId}`}
-          key={props.elem.placeId}
-          props={props.elem}
-        >
-          <img src={props.elem.pictures[0]} alt="restaurant pic" key={index} />
+        <Link to={`/restaurant/${props.elem.placeId}`} props={props.elem}>
+          <img src={props.elem.pictures[0]} alt="restaurant pic" />
         </Link>
       </div>
       <div>
         <h3>{props.elem.name}</h3>
-        <div>{displayStars(props.elem.rating)}</div>
+        <div>{displayStars(props.elem.rating)} </div>
         <p>{props.elem.description}</p>
       </div>
     </section>

@@ -16,7 +16,7 @@ const Home = () => {
           "https://res.cloudinary.com/lereacteur-apollo/raw/upload/v1575242111/10w-full-stack/Scraping/restaurants.json"
         );
         setData(response.data);
-        console.log(response.data);
+        console.log(response.data.type);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
