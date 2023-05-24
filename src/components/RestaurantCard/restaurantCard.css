@@ -1,0 +1,63 @@
+.bloc {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: 340px;
+}
+
+.bloc p {
+  height: 70px;
+  width: 100%;
+  color: #444444;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.bloc h3 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  color: #444444;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.imgBloc img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  box-sizing: border-box;
+}
+
+.imgBloc {
+  height: 180px;
+  position: relative;
+}
+
+.imgBloc button {
+  all: unset;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  text-align: center;
+  color: red;
+  padding: 10px;
+  background-color: white;
+
+  border-radius: 50%;
+}
