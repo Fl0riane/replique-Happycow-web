@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import Hero from "../components/Hero/Hero";
 
@@ -21,7 +22,7 @@ const Home = () => {
         console.log(error.message);
       }
     };
-    fetchData;
+    fetchData();
   }, []);
 
   return IsLoading ? (
