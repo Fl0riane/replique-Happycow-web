@@ -1,4 +1,5 @@
 import GoogleMapReact from "google-map-react";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import "./map.css";
 const AnyReactComponent = ({ lat, lng }) => (
   <div>
@@ -17,7 +18,6 @@ const SimpleMap = ({ lat, lng }) => {
   };
 
   return (
-    // Important! Always set the container height explicitly
     <div
       style={{
         height: "200px",

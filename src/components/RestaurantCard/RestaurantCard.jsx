@@ -13,7 +13,7 @@ const RestaurantCard = (props, index) => {
         <button>
           <FontAwesomeIcon icon="fa-regular fa-heart" />
         </button>
-        <Link to={`/restaurant/${props.elem.placeId}`} props={props.elem}>
+        <Link to={`/restaurant/${props.elem.placeId}`}>
           <img src={props.elem.pictures[0]} alt="restaurant pic" />
         </Link>
       </div>

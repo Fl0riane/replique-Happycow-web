@@ -4,6 +4,7 @@ import displayVeg from "../../utils/Display/displayVeg";
 import Map from "../Map/Map";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import logofb from "../../assets/img/facebook-logo.jpg";
 const restaurantPage = ({ elem, index }) => {
   const allImg = elem.pictures;
   const hiddenpic = allImg.length - 4;
@@ -65,7 +66,7 @@ const restaurantPage = ({ elem, index }) => {
             </span>
 
             <span>
-              {/* <FontAwesomeIcon icon="fa-brands fa-facebook-f" /> */}
+              <img src={logofb} alt="logo facebook" />
               <a href={elem.facebook}> {elem.facebook}</a>
             </span>
           </div>
