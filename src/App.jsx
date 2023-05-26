@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Cookies from "js-cookie";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart, faCircleXmark } from "@fortawesome/free-regular-svg-icons";
@@ -34,18 +35,34 @@ import Home from "./pages/Home";
 import Header from "./components/Header/Header";
 import Restaurant from "./pages/RestaurantPage/Restaurant";
 import Modal from "./components/Modal/Modal";
+import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   const [visible, setVisible] = useState(false);
+  const handleUserData = (userData) => {
+    if (userData && userData.token) {
+      const { token } = userData;
+      setToken(token);
 
+      Cookies.set("hc-Token", token, { expires: 14 });
+    } else {
+      setToken(null);
+      Cookies.remove("hc-Token");
+    }
+  };
   return (
     <Router>
       <Header visible={visible} setVisible={setVisible} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/restaurant/:id" element={<Restaurant />} />
+        <Route path="/user/login" element={<LoginPage />} />
+        <Route path="/user/signUp" element={<SignUpPage />} />
       </Routes>
-      {visible && <Modal setVisible={setVisible} />}
+      {visible && (
+        <Modal handleUserData={handleUserData} setVisible={setVisible} />
+      )}
     </Router>
   );
 }

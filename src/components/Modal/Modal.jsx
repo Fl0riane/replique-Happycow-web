@@ -5,7 +5,7 @@ import logoGoogle from "../../assets/img/google.png";
 import { useState } from "react";
 import LoginForm from "../LoginForm/LoginForm";
 
-const Modal = ({ setVisible }) => {
+const Modal = ({ setVisible, handleUserData }) => {
   const [isActive, setActive] = useState("false");
   const handleToggle = () => {
     setActive(!isActive);

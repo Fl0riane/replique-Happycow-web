@@ -12,6 +12,7 @@ import veganIcon from "../../assets/img/vegan_marker.png";
 import vegeIcon from "../../assets/img/vegetarian_marker.png";
 import vegOption from "../../assets/img/veg_options_marker.png";
 import vegShop from "../../assets/img/veg_shop_marker.png";
+import otherLogo from "../../assets/img/other_marker.png";
 
 const Restaurant = ({ placeId }) => {
   const { id } = useParams();
@@ -28,15 +29,14 @@ const Restaurant = ({ placeId }) => {
 
   if (data.type === "vegan") {
     iconImg = veganIcon;
-  }
-  if (data.type === "vegetarian") {
+  } else if (data.type === "vegetarian") {
     iconImg = vegeIcon;
-  }
-  if (data.type === "veg-options") {
+  } else if (data.type === "veg-options") {
     iconImg = vegOption;
-  }
-  if (data.type === "veg Store") {
+  } else if (data.type === "Veg Store") {
     iconImg = vegShop;
+  } else {
+    iconImg = otherLogo;
   }
 
   const icon = new L.Icon({
