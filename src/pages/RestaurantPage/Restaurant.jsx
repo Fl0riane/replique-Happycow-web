@@ -19,16 +19,14 @@ const Restaurant = ({ placeId }) => {
     return data.description.slice(findOpen);
   };
 
-  // const iconimg =
-  //   displayIcon(data.type);
-
-  //   console.log(iconimg)
-  //   const icon = new Icon({
-  //     iconUrl: { iconimg },
+  // const iconimg = () => {
+  //   const findIcon = displayIcon(data.type);
+  //   return new Icon({
+  //     iconUrl: { findIcon },
   //     iconSize: [25, 25],
   //   });
+  // };
 
-  // console.log(icon);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -96,7 +94,7 @@ const Restaurant = ({ placeId }) => {
 
               <Marker
                 position={[data.location.lat, data.location.lng]}
-                // icon={displayIcon(data.type)}
+                // icon={iconimg}
               />
             </MapContainer>
           </div>
