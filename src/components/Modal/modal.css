@@ -11,7 +11,15 @@
   height: 542px;
   margin: 185px auto;
 }
+
+.modal button {
+  all: unset;
+}
 .leftPart {
+  background-image: url("../../assets/img/login-social.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px 0 0 10px;
   display: flex;
   align-items: center;
   position: relative;
@@ -22,7 +30,7 @@
 
 .leftPart > img {
   box-sizing: border-box;
-  border-radius: 10px 0 0 10px;
+
   height: 100%;
   width: 100%;
 }
@@ -47,7 +55,64 @@
 }
 
 .rigthPart {
+  display: flex;
+  flex-direction: column;
   background-color: white;
   flex: 1;
   border-radius: 0px 10px 10px 0px;
+}
+
+.rigthPart > button:first-child {
+  text-align: end;
+  padding-right: 8px;
+  padding-top: 8px;
+}
+
+.rigthPart span {
+  padding-left: 40px;
+  display: flex;
+  gap: 40px;
+  padding-top: 20px;
+}
+
+.rigthPart span button {
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.rigthPart nav {
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.rigthPart nav > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px solid #bbbb;
+}
+.rigthPart p {
+  margin-top: 20px;
+
+  width: 100%;
+  text-align: center;
+}
+.logoSM {
+  object-fit: contain;
+  box-sizing: border-box;
+  width: 35px;
+  height: 35px;
+  padding: 6px;
+  border-radius: 50%;
+}
+.line {
+  text-decoration: line-through;
 }

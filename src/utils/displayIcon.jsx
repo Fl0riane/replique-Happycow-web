@@ -1,6 +1,6 @@
 const veganIcon = L.icon({
-  iconUrl:
-    "/Users/flopel/Desktop/LeReacteur/repliques/happy-cow-frontEnd/src/assets/img/vegan_marker.pn",
+  iconUrl: "src/assets/img/vegetarian_marker.png",
+  iconSize: [25, 25],
 });
 
 const vegeIcon = L.icon({

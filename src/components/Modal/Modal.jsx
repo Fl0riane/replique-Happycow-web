@@ -1,6 +1,7 @@
-import imgLog from "../../assets/img/login-social.jpg";
 import "./modal.css";
 import logoWhite from "../../assets/img/hc-logo-white.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logoGoogle from "../../assets/img/google.png";
 const Modal = ({ setVisible }) => {
   return (
     <section className="modal-root">
@@ -11,7 +12,6 @@ const Modal = ({ setVisible }) => {
         }}
       >
         <div className="leftPart">
-          <img src={imgLog} alt="img log" />
           <span>
             <img src={logoWhite} alt="logo hp blanc" />
             <h3>Welcome to HappyCow</h3>
@@ -23,22 +23,38 @@ const Modal = ({ setVisible }) => {
               setVisible(false);
             }}
           >
-            x
+            <FontAwesomeIcon
+              icon="fa-regular fa-circle-xmark"
+              size="xl"
+              style={{ color: "#BBBB", opacity: "90%" }}
+            />
           </button>
-          <button
-            onClick={() => {
-              setVisible(false);
-            }}
-          >
-            Login
-          </button>
-          <button
-            onClick={() => {
-              setVisible(false);
-            }}
-          >
-            Sign Up
-          </button>
+
+          <span>
+            <button>Login</button>
+            <button>Sign Up</button>
+          </span>
+          <nav>
+            <div>
+              <FontAwesomeIcon
+                icon="fa-brands fa-facebook-f"
+                size="xl"
+                style={{ color: "#3a5898" }}
+              />
+            </div>
+            <div>
+              <img className="logoSM" src={logoGoogle} alt="logo google" />
+            </div>
+            <div>
+              <FontAwesomeIcon
+                icon="fa-brands fa-apple"
+                size="xl"
+                style={{ color: "#050505" }}
+              />
+            </div>
+          </nav>
+
+          <p>OR</p>
         </div>
       </div>
     </section>

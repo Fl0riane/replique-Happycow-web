@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import { faHeart, faCircleXmark } from "@fortawesome/free-regular-svg-icons";
+import { faFacebookF, faApple } from "@fortawesome/free-brands-svg-icons";
 import {
   faMagnifyingGlass,
   faStar,
@@ -24,7 +24,9 @@ library.add(
   faPhone,
   faLink,
   faCamera,
-  faFacebookF
+  faFacebookF,
+  faCircleXmark,
+  faApple
 );
 
 import "./App.css";
