@@ -6,7 +6,6 @@ import displayVeg from "../../utils/DisplayVeg/displayVeg";
 import displayIcon from "../../utils/displayIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
-import { Icon } from "leaflet";
 import "./restaurant.css";
 
 const Restaurant = ({ placeId }) => {
@@ -14,18 +13,11 @@ const Restaurant = ({ placeId }) => {
   const [data, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
   const [hidden, setHidden] = useState(true);
+  const iconImg = displayIcon(data.type);
   const open = () => {
     const findOpen = data.description.indexOf("Open");
     return data.description.slice(findOpen);
   };
-
-  // const iconimg = () => {
-  //   const findIcon = displayIcon(data.type);
-  //   return new Icon({
-  //     iconUrl: { findIcon },
-  //     iconSize: [25, 25],
-  //   });
-  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -94,7 +86,7 @@ const Restaurant = ({ placeId }) => {
 
               <Marker
                 position={[data.location.lat, data.location.lng]}
-                // icon={iconimg}
+                icon={iconImg}
               />
             </MapContainer>
           </div>
