@@ -30,7 +30,7 @@ library.add(
 import "./App.css";
 import Home from "./pages/Home";
 import Header from "./components/Header/Header";
-import Restaurant from "./pages/Restaurant";
+import Restaurant from "./pages/RestaurantPage/Restaurant";
 import Modal from "./components/Modal/Modal";
 
 function App() {

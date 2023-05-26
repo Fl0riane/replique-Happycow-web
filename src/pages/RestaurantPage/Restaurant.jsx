@@ -1,23 +1,34 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios, { all } from "axios";
-import displayStars from "../utils/displaystars";
-import displayVeg from "../utils/Display/displayVeg";
+import displayStars from "../../utils/displaystars";
+import displayVeg from "../../utils/DisplayVeg/displayVeg";
+import displayIcon from "../../utils/displayIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import { Icon } from "leaflet";
+import "./restaurant.css";
 
 const Restaurant = ({ placeId }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
   const [hidden, setHidden] = useState(true);
+  const open = () => {
+    const findOpen = data.description.indexOf("Open");
+    return data.description.slice(findOpen);
+  };
 
-  const allImg = data.pictures;
+  // const iconimg =
+  //   displayIcon(data.type);
 
-  const hiddenpic = allImg.length - 4;
-  const description = data.description;
-  let findOpen = description.indexOf("Open");
-  const open = description.slice(findOpen);
+  //   console.log(iconimg)
+  //   const icon = new Icon({
+  //     iconUrl: { iconimg },
+  //     iconSize: [25, 25],
+  //   });
 
+  // console.log(icon);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,6 +39,7 @@ const Restaurant = ({ placeId }) => {
           (element) => element.placeId.toString() === id
         );
         setData(restaurant);
+
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -42,27 +54,27 @@ const Restaurant = ({ placeId }) => {
     <main className="container">
       <div>
         <h2>{data.name}</h2>
-        <div>{displayStars(data.rating)}</div>
+        <div className="star">{displayStars(data.rating)}</div>
         <span className="veg">{displayVeg(data.type)} </span>
       </div>
       <div className="row">
         <section className="leftCol">
           <div className="blocImg">
-            {allImg.map((elem, index) => {
+            {data.pictures.map((elem, index) => {
               return (
                 <div key={index}>
                   <img className="littlePic" src={elem} alt="restaurant pic" />
                 </div>
               );
             })}
-            {allImg.length > 4 && (
+            {data.pictures.length > 4 && (
               <button
                 onClick={() => {
                   setHidden(false);
                 }}
               >
                 <FontAwesomeIcon icon="fa-solid fa-camera" />
-                <h3>All Photos</h3> <p>({hiddenpic})</p>
+                <h3>All Photos</h3> <p>({data.pictures.length})</p>
               </button>
             )}
           </div>
@@ -71,6 +83,25 @@ const Restaurant = ({ placeId }) => {
         </section>
         <section className="rightCol">
           <div>
+            <MapContainer
+              className="map"
+              center={[48.866667, 2.333333]}
+              zoom={13}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+
+              <Marker
+                position={[data.location.lat, data.location.lng]}
+                // icon={displayIcon(data.type)}
+              />
+            </MapContainer>
+          </div>
+
+          <div>
             <span>
               <FontAwesomeIcon icon="fa-solid fa-location-dot" />
               <p>{data.address}</p>
@@ -78,7 +109,7 @@ const Restaurant = ({ placeId }) => {
 
             <span>
               <FontAwesomeIcon icon="fa-solid fa-clock" />
-              <p>{open}</p>
+              <p>{open(data.description)}</p>
             </span>
             <span>
               <FontAwesomeIcon icon="fa-solid fa-phone" />

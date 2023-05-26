@@ -5,7 +5,7 @@ import vegoptlogo from "../../assets/img/category_veg-options.jpg";
 
 const displayVeg = (props) => {
   console.log(props);
-  if (props === "Vegan") {
+  if (props === "vegan") {
     return (
       <span style={{ backgroundColor: "#195B0A" }} className="logoM">
         <img src={veganlogo} alt="logo végan" /> <p>Vegan</p>

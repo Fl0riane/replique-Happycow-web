@@ -13,7 +13,6 @@ const displayStars = (number) => {
           />
         );
       } else {
-        // sinon j'ajoute une étoile grise
         tab.push(
           <FontAwesomeIcon
             icon="fa-solid fa-star"
@@ -39,7 +38,6 @@ const displayStars = (number) => {
           />
         );
       } else {
-        // sinon j'ajoute une étoile grise
         tab.push(
           <FontAwesomeIcon
             icon="fa-solid fa-star"

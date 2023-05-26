@@ -42,3 +42,9 @@ h4 {
   margin-top: 5px;
   color: #444444;
 }
+.map {
+  height: 200px;
+  width: 340px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}

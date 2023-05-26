@@ -6,6 +6,7 @@
   overflow: hidden;
   gap: 1px;
   position: relative;
+  border-radius: 5px;
 }
 
 .littlePic {
@@ -46,13 +47,8 @@
 .rightCol span {
   display: flex;
   align-items: center;
-
   gap: 10px;
   margin-bottom: 10px;
-}
-
-.rightCol :first-child p {
-  padding-top: 20px;
 }
 
 .rightCol a {
@@ -60,4 +56,7 @@
   padding: 10px 0;
   color: #9069cd;
   font-weight: bold;
+}
+.star {
+  margin-bottom: 20px;
 }
