@@ -2,11 +2,26 @@ import "./modal.css";
 import logoWhite from "../../assets/img/hc-logo-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logoGoogle from "../../assets/img/google.png";
+import { useState } from "react";
+import LoginForm from "../LoginForm/LoginForm";
+
 const Modal = ({ setVisible }) => {
+  const [isActive, setActive] = useState("false");
+  const handleToggle = () => {
+    setActive(!isActive);
+    setActive2("false");
+  };
+
+  const [isActive2, setActive2] = useState("false");
+  const handleToggle2 = () => {
+    setActive2(!isActive2);
+    setActive("false");
+  };
+
   return (
     <section className="modal-root">
       <div
-        className="modal"
+        className="modallog"
         onClick={(event) => {
           event.stopPropagation();
         }}
@@ -31,8 +46,12 @@ const Modal = ({ setVisible }) => {
           </button>
 
           <span>
-            <button>Login</button>
-            <button>Sign Up</button>
+            <div className={isActive ? "clic" : null}>
+              <button onClick={handleToggle2}>Login</button>
+            </div>
+            <div className={isActive2 ? "clic" : null}>
+              <button onClick={handleToggle}>Sign Up</button>
+            </div>
           </span>
           <nav>
             <div>
@@ -55,6 +74,7 @@ const Modal = ({ setVisible }) => {
           </nav>
 
           <p>OR</p>
+          <LoginForm />
         </div>
       </div>
     </section>

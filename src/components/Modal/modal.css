@@ -5,17 +5,17 @@
   width: 100vw;
   background-color: rgba(102, 102, 102, 0.5);
 }
-.modal {
+.modallog {
   display: flex;
   width: 840px;
   height: 542px;
   margin: 185px auto;
 }
 
-.modal button {
+.modal-root button {
   all: unset;
 }
-.leftPart {
+.modallog .leftPart {
   background-image: url("../../assets/img/login-social.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -30,7 +30,6 @@
 
 .leftPart > img {
   box-sizing: border-box;
-
   height: 100%;
   width: 100%;
 }
@@ -79,6 +78,7 @@
   font-size: 24px;
   line-height: 24px;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .rigthPart nav {
@@ -101,7 +101,6 @@
 }
 .rigthPart p {
   margin-top: 20px;
-
   width: 100%;
   text-align: center;
 }
@@ -115,4 +114,7 @@
 }
 .line {
   text-decoration: line-through;
+}
+.clic {
+  border-bottom: 5px solid #9069cd;
 }

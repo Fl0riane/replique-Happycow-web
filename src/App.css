@@ -47,4 +47,5 @@ h4 {
   width: 340px;
   border-radius: 5px;
   margin-bottom: 20px;
+  z-index: 0;
 }

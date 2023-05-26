@@ -1,0 +1,39 @@
+.form {
+  position: relative;
+  height: 370px;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 50px;
+}
+.form input {
+  all: unset;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #bbbb;
+  margin-top: 5px;
+}
+
+.form label {
+  margin-top: 25px;
+}
+.form p {
+  line-height: 15px;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  text-align: left;
+}
+
+.form > button:last-child {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 50px;
+  width: 85%;
+  color: white;
+  background-color: #9069cd;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}

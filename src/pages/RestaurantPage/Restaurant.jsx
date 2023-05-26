@@ -3,21 +3,46 @@ import { useEffect, useState } from "react";
 import axios, { all } from "axios";
 import displayStars from "../../utils/displaystars";
 import displayVeg from "../../utils/DisplayVeg/displayVeg";
-import displayIcon from "../../utils/displayIcon";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
 import "./restaurant.css";
+import veganIcon from "../../assets/img/vegan_marker.png";
+import vegeIcon from "../../assets/img/vegetarian_marker.png";
+import vegOption from "../../assets/img/veg_options_marker.png";
+import vegShop from "../../assets/img/veg_shop_marker.png";
 
 const Restaurant = ({ placeId }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
   const [hidden, setHidden] = useState(true);
-  const iconImg = displayIcon(data.type);
+
   const open = () => {
     const findOpen = data.description.indexOf("Open");
     return data.description.slice(findOpen);
   };
+
+  let iconImg = "";
+
+  if (data.type === "vegan") {
+    iconImg = veganIcon;
+  }
+  if (data.type === "vegetarian") {
+    iconImg = vegeIcon;
+  }
+  if (data.type === "veg-options") {
+    iconImg = vegOption;
+  }
+  if (data.type === "veg Store") {
+    iconImg = vegShop;
+  }
+
+  const icon = new L.Icon({
+    iconUrl: iconImg,
+    iconSize: [30, 35],
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,7 +100,7 @@ const Restaurant = ({ placeId }) => {
           <div>
             <MapContainer
               className="map"
-              center={[48.866667, 2.333333]}
+              center={[data.location.lat, data.location.lng]}
               zoom={13}
               scrollWheelZoom={false}
             >
@@ -86,7 +111,7 @@ const Restaurant = ({ placeId }) => {
 
               <Marker
                 position={[data.location.lat, data.location.lng]}
-                icon={iconImg}
+                icon={icon}
               />
             </MapContainer>
           </div>
