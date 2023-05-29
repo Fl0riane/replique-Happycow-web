@@ -1,16 +1,24 @@
 import "./hero.css";
-import Homeimg from "../../assets/img/Homeimg.jpg";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const Hero = () => {
+import { Link } from "react-router-dom";
+const Hero = ({ handleSearch, research }) => {
+  console.log("log hero", research);
   return (
     <div className="hero">
       <h1>Find Vegan Restaurants Nearby</h1>
 
       <span>
-        <input type="text" />
-        <p className="icon">
-          <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
-        </p>
+        <input
+          type="text"
+          placeholder="Search for city"
+          onChange={handleSearch}
+        />
+        <Link to="/research/country" research={research}>
+          <button className="icon">
+            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+          </button>
+        </Link>
       </span>
     </div>
   );

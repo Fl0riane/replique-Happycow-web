@@ -6,7 +6,7 @@ const Header = ({ setVisible, visible }) => {
   return (
     <header>
       <Link to="/">
-        <img src={logo} alt="logo happy-cow blanc et violet" />{" "}
+        <img src={logo} alt="logo happy-cow blanc et violet" />
       </Link>
       <div>
         <button>

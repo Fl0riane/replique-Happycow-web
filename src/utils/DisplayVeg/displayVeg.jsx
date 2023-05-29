@@ -4,7 +4,7 @@ import veggielogo from "../../assets/img/category_vegetarian.png";
 import vegoptlogo from "../../assets/img/category_veg-options.png";
 import vegStore from "../../assets/img/category_veg-store.png";
 const displayVeg = (props) => {
-  console.log(props);
+  // console.log(props);
   if (props === "vegan") {
     return (
       <span style={{ backgroundColor: "#195B0A" }} className="logoM">

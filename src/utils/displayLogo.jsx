@@ -4,7 +4,7 @@ import vegoptlogo from "../assets/img/category_veg-options.png";
 import vegShopLogo from "../assets/img/category_veg-store.png";
 import otherLogo from "../assets/img/category_other.png";
 const displayVeg = (props) => {
-  console.log(props);
+  // console.log(props);
   if (props === "vegan") {
     return <img className="logo" src={veganlogo} alt="logo végan" />;
   } else if (props === "vegetarian") {

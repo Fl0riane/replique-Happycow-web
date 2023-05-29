@@ -8,7 +8,7 @@ const RestaurantCard = (props, index) => {
   // console.log(props);
 
   return (
-    <section className="bloc" key={props.elem.placeId}>
+    <section className="bloc">
       <div className="imgBloc">
         <button>
           <FontAwesomeIcon icon="fa-regular fa-heart" />
@@ -19,12 +19,12 @@ const RestaurantCard = (props, index) => {
       </div>
       <div>
         <span className="title">
-          <div> {displayLogo(props.elem.type)}</div>
+          <div>{displayLogo(props.elem.type)}</div>
 
           <h4>{props.elem.name}</h4>
         </span>
 
-        <div>{displayStars(props.elem.rating)} </div>
+        <div key={props.elem.rating}>{displayStars(props.elem.rating)} </div>
         <p>{props.elem.description}</p>
       </div>
     </section>

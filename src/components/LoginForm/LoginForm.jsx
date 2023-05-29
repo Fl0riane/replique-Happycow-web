@@ -1,12 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import "../SignUpForm/form.css";
-const LoginForm = () => {
+const LoginForm = ({ handleUserData }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   const [errorMessage, setErromessage] = useState("");
+  const navigate = useNavigate();
+
   const handleEmailChange = (event) => {
     const value = event.target.value;
     setEmail(value);
@@ -24,7 +25,7 @@ const LoginForm = () => {
         event.preventDefault();
         try {
           const response = await axios.post(
-            "http://localhost/3000/user/login",
+            "http://localhost:3000/user/login",
             { email: email, password: password }
           );
           if (response.data) {
@@ -32,28 +33,37 @@ const LoginForm = () => {
               token: response.data.token,
               userId: response.data._id,
             });
-            navigate("/");
+
+            alert("vous etes connecté");
           }
+          navigate("/");
         } catch (error) {
           console.log(error.message);
+          console.log(error.response.status);
 
-          if (error.response.status === 401) {
+          if (error.response === 401) {
             setErromessage("Accès non autorisé");
           }
         }
       }}
     >
       <label htmlFor="id">Username or Email</label>
-      <input name="id" type="text" placeholder=" Username or Email" />
+      <input
+        name="id"
+        type="text"
+        placeholder=" Username or Email"
+        onChange={handleEmailChange}
+      />
       <label htmlFor="password">Password</label>
       <input
         placeholder="password"
         type="password"
         name="password"
-        // onChange={handlePasswordChange}
+        onChange={handlePasswordChange}
       />
 
       <button type="submit">Login</button>
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
     </form>
   );
 };

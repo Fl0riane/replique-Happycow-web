@@ -1,3 +1,4 @@
+import "./App.css";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -30,16 +31,23 @@ library.add(
   faApple
 );
 
-import "./App.css";
+/*-----------------------Pages-------------------------------*/
 import Home from "./pages/Home";
-import Header from "./components/Header/Header";
+import ResearchPage from "./pages/ResearchPage";
 import Restaurant from "./pages/RestaurantPage/Restaurant";
+
+/*-----------------------Components----------------------------*/
+import Header from "./components/Header/Header";
 import Modal from "./components/Modal/Modal";
-import SignUpPage from "./pages/SignUpPage";
-import LoginPage from "./pages/LoginPage";
 
 function App() {
+  const [token, setToken] = useState(Cookies.get("hc-Token") || null);
   const [visible, setVisible] = useState(false);
+  const [research, setResearch] = useState("");
+  const handleSearch = (event) => {
+    setResearch(event.target.value);
+  };
+
   const handleUserData = (userData) => {
     if (userData && userData.token) {
       const { token } = userData;
@@ -57,11 +65,17 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/restaurant/:id" element={<Restaurant />} />
-        <Route path="/user/login" element={<LoginPage />} />
-        <Route path="/user/signUp" element={<SignUpPage />} />
+        <Route
+          path="/research/country"
+          element={<ResearchPage handleSearch={handleSearch} />}
+        ></Route>
       </Routes>
       {visible && (
-        <Modal handleUserData={handleUserData} setVisible={setVisible} />
+        <Modal
+          handleUserData={handleUserData}
+          setVisible={setVisible}
+          visible={visible}
+        />
       )}
     </Router>
   );

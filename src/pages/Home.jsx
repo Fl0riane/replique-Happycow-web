@@ -8,16 +8,19 @@ import RestaurantCard from "../components/RestaurantCard/RestaurantCard";
 const Home = () => {
   const [data, setData] = useState();
   const [IsLoading, setIsLoading] = useState(true);
+  const [research, setResearch] = useState("");
+  const handleSearch = (event) => {
+    setResearch(event.target.value);
+  };
 
+  console.log(research);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://res.cloudinary.com/lereacteur-apollo/raw/upload/v1575242111/10w-full-stack/Scraping/restaurants.json"
-        );
+        const response = await axios.get("http://localhost:3000/restaurants");
         setData(response.data);
-        console.log(response.data.type);
         setIsLoading(false);
+        console.log(response.data);
       } catch (error) {
         console.log(error.message);
       }
@@ -29,11 +32,11 @@ const Home = () => {
     <p>is Laoding</p>
   ) : (
     <div>
-      <Hero />
+      <Hero research={research} handleSearch={handleSearch} />
       <section className="container ">
         <h2>Vegan Food Near Me</h2>
         <div className=" wrap">
-          {data.map((elem) => {
+          {data.restaurants.map((elem) => {
             return <RestaurantCard elem={elem} key={elem.placeId} />;
           })}
         </div>
