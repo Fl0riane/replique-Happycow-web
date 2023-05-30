@@ -1,0 +1,58 @@
+.researchPage {
+  display: flex;
+  padding: 16px;
+}
+.researchPage span {
+  display: flex;
+  margin: 0 10px;
+  margin: 10px 0;
+}
+
+.researchPage span input {
+  box-sizing: border-box;
+  padding-left: 5px;
+  width: 870px;
+  border: 1px solid #cccc;
+  border-radius: 5px 0 0 5px;
+}
+.researchPage span button {
+  flex: 1;
+}
+
+.researchPage section {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  height: 100%;
+}
+
+.wrap2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  width: 286px;
+  height: 235px;
+  border: 1px solid #dddd;
+
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.card img {
+  box-sizing: border-box;
+  object-fit: cover;
+  width: 100%;
+  height: 140px;
+  border-radius: 8px 8px 0 0;
+}
+.card p {
+  margin-top: 10px;
+  font-size: 12px;
+}
+.BigMap {
+  width: 100%;
+  height: 100vh;
+}

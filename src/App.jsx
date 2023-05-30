@@ -33,7 +33,7 @@ library.add(
 
 /*-----------------------Pages-------------------------------*/
 import Home from "./pages/Home";
-import ResearchPage from "./pages/ResearchPage";
+import ResearchPage from "./pages/ResearchPage/ResearchPage";
 import Restaurant from "./pages/RestaurantPage/Restaurant";
 
 /*-----------------------Components----------------------------*/
