@@ -14,8 +14,8 @@ const Hero = ({ handleSearch, research }) => {
           placeholder="Search for city"
           onChange={handleSearch}
         />
-        <Link to="/research/country" research={research}>
-          <button className="icon">
+        <Link to="/research/country" state={{ research: research }}>
+          <button className="icon" onClick={handleSearch}>
             <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
           </button>
         </Link>

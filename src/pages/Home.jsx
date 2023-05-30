@@ -20,7 +20,7 @@ const Home = () => {
         const response = await axios.get("http://localhost:3000/restaurants");
         setData(response.data);
         setIsLoading(false);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.log(error.message);
       }
