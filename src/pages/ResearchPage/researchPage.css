@@ -120,3 +120,6 @@
   width: 30px;
   height: 15px;
 }
+.green:hover {
+  background-color: green;
+}

@@ -72,11 +72,22 @@ function App() {
         handleSearch={handleSearch}
       />
       <Routes>
-        <Route path="/" element={<Home handleSearch={handleSearch} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              handleSearch={handleSearch}
+              setResearch={setResearch}
+              research={research}
+            />
+          }
+        />
         <Route path="/restaurant/:id" element={<Restaurant />} />
         <Route
           path="/research/country"
-          element={<ResearchPage handleSearch={handleSearch} />}
+          element={
+            <ResearchPage handleSearch={handleSearch} research={research} />
+          }
         ></Route>
         <Route path="/addlist" element={<AddListPage />}></Route>
       </Routes>

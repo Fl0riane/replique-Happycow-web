@@ -5,13 +5,9 @@ import Hero from "../components/Hero/Hero";
 import Modal from "../components/Modal/Modal";
 import RestaurantCard from "../components/RestaurantCard/RestaurantCard";
 
-const Home = () => {
+const Home = ({ handleSearch, research }) => {
   const [data, setData] = useState();
   const [IsLoading, setIsLoading] = useState(true);
-  const [research, setResearch] = useState("");
-  const handleSearch = (event) => {
-    setResearch(event.target.value);
-  };
 
   useEffect(() => {
     const fetchData = async () => {

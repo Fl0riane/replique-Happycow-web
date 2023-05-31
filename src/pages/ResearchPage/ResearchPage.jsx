@@ -17,11 +17,8 @@ import otherLogo from "../../assets/img/other_marker.png";
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-const research = () => {
+const research = ({ handleSearch, research }) => {
   const location = useLocation();
-  const research = location.state.research;
-  const handleSearch = location.state.handleSearch;
-
   const [data, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
@@ -140,8 +137,22 @@ const research = () => {
         </nav>
         <div className="wrap2">
           {data.map((elem) => {
+            let className = "";
+
+            if (elem.type === "vegan") {
+              className = "green";
+            } else if (elem.type === "vegetarian") {
+              className = "purple";
+            } else if (elem.type === "veg-options") {
+              className = "red";
+            } else if (elem.type === "Veg Store") {
+              className = "green2";
+            } else {
+              className = "bleu";
+            }
+
             return (
-              <div className="card">
+              <div className="card .classname">
                 <Link to={`/restaurant/${elem.placeId}`}>
                   <img src={elem.pictures[0]} alt="premiere photo" />
                   <h5>{elem.name}</h5>
@@ -168,17 +179,23 @@ const research = () => {
             <div>
               {data.map((elem) => {
                 let iconImg = "";
+                let className = "";
 
                 if (elem.type === "vegan") {
+                  className = "green";
                   iconImg = veganIcon;
                 } else if (elem.type === "vegetarian") {
                   iconImg = vegeIcon;
+                  className = "purple";
                 } else if (elem.type === "veg-options") {
                   iconImg = vegOption;
+                  className = "red";
                 } else if (elem.type === "Veg Store") {
                   iconImg = vegShop;
+                  className = "green2";
                 } else {
                   iconImg = otherLogo;
+                  className = "bleu";
                 }
 
                 const icon = new L.Icon({

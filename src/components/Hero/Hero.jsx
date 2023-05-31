@@ -2,7 +2,7 @@ import "./hero.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-const Hero = ({ handleSearch, research, setResearch }) => {
+const Hero = ({ handleSearch, research }) => {
   return (
     <div className="hero">
       <h1>Find Vegan Restaurants Nearby</h1>
@@ -13,13 +13,15 @@ const Hero = ({ handleSearch, research, setResearch }) => {
           placeholder="Search for city"
           onChange={handleSearch}
         />
-        <Link to="/research/country" state={{ research: research }}>
-          <p className="icon">
-            <button onClick={handleSearch}>
+
+        <p className="icon">
+          <button onClick={handleSearch}>
+            <Link to="/research/country">
               <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
-            </button>
-          </p>
-        </Link>
+            </Link>
+          </button>
+        </p>
+
         <div className="wave"></div>
       </span>
     </div>
