@@ -14,6 +14,8 @@ import {
   faPhone,
   faLink,
   faCamera,
+  faAngleLeft,
+  faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -28,13 +30,16 @@ library.add(
   faCamera,
   faFacebookF,
   faCircleXmark,
-  faApple
+  faApple,
+  faAngleLeft,
+  faAngleRight
 );
 
 /*-----------------------Pages-------------------------------*/
 import Home from "./pages/Home";
 import ResearchPage from "./pages/ResearchPage/ResearchPage";
 import Restaurant from "./pages/RestaurantPage/Restaurant";
+import AddListPage from "./pages/AddListPage/AddListPage";
 
 /*-----------------------Components----------------------------*/
 import Header from "./components/Header/Header";
@@ -43,7 +48,7 @@ import Modal from "./components/Modal/Modal";
 function App() {
   const [token, setToken] = useState(Cookies.get("hc-Token") || null);
   const [visible, setVisible] = useState(false);
-  const [research, setResearch] = useState("");
+  const [research, setResearch] = useState("Paris");
   const handleSearch = (event) => {
     setResearch(event.target.value);
   };
@@ -61,14 +66,19 @@ function App() {
   };
   return (
     <Router>
-      <Header visible={visible} setVisible={setVisible} />
+      <Header
+        visible={visible}
+        setVisible={setVisible}
+        handleSearch={handleSearch}
+      />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home handleSearch={handleSearch} />} />
         <Route path="/restaurant/:id" element={<Restaurant />} />
         <Route
           path="/research/country"
           element={<ResearchPage handleSearch={handleSearch} />}
         ></Route>
+        <Route path="/addlist" element={<AddListPage />}></Route>
       </Routes>
       {visible && (
         <Modal

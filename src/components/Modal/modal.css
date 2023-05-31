@@ -92,7 +92,7 @@ main > button:first-child {
   justify-content: center;
   gap: 20px;
 }
-.rigthPart nav > div {
+.rigthPart nav > a {
   display: flex;
   align-items: center;
   justify-content: center;

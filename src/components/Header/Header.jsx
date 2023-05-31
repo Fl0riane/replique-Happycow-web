@@ -1,8 +1,8 @@
 import logo from "../../assets/img/happycow-logo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
-import { Link } from "react-router-dom";
-const Header = ({ setVisible, visible }) => {
+import { Link, useLocation } from "react-router-dom";
+const Header = ({ setVisible, visible, research }) => {
   return (
     <header>
       <Link to="/">
@@ -10,9 +10,14 @@ const Header = ({ setVisible, visible }) => {
       </Link>
       <div>
         <button>
-          <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+          <Link to="/research/country" state={{ research: research }}>
+            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+          </Link>
         </button>
-        <button>Add Listing</button>
+
+        <button>
+          <Link to="/addList"> Add Listing</Link>
+        </button>
 
         <button
           onClick={() => {

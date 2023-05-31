@@ -89,7 +89,7 @@ const Restaurant = ({ placeId }) => {
                 }}
               >
                 <FontAwesomeIcon icon="fa-solid fa-camera" />
-                <h3>All Photos</h3> <p>({data.pictures.length})</p>
+                <p>All Photos</p> <p>({data.pictures.length})</p>
               </button>
             )}
           </div>

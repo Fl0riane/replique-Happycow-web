@@ -1,7 +1,7 @@
 import "./researchPage.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import displaystars from "../../utils/displaystars";
@@ -16,42 +16,28 @@ import vegShop from "../../assets/img/veg_shop_marker.png";
 import otherLogo from "../../assets/img/other_marker.png";
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-const research = ({ handleSearch }) => {
+
+const research = () => {
   const location = useLocation();
-  let research = location.state.research;
+  const research = location.state.research;
+  const handleSearch = location.state.handleSearch;
+
   const [data, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
+  const [type, setType] = useState("");
+  const [page, setPage] = useState(1);
   const numberOfPage = Math.ceil(counter / 81);
-  console.log(data.type);
-  let iconImg = "";
-
-  if (data.type === "vegan") {
-    iconImg = veganIcon;
-  } else if (data.type === "vegetarian") {
-    iconImg = vegeIcon;
-  } else if (data.type === "veg-options") {
-    iconImg = vegOption;
-  } else if (data.type === "Veg Store") {
-    iconImg = vegShop;
-  } else {
-    iconImg = otherLogo;
-  }
-
-  const icon = new L.Icon({
-    iconUrl: iconImg,
-    iconSize: [30, 35],
-  });
 
   const displayPage = (numberOfPage) => {
-    let page = 1;
     const tab = [];
     if (numberOfPage > 1) {
-      for (let i = 0; i <= numberOfPage; i++) {
+      for (let i = 0; i < numberOfPage; i++) {
         tab.push(
           <button
             onClick={() => {
-              page = page + 1;
+              console.log(numberOfPage);
+              setPage(i);
             }}
           >
             {i + 1}
@@ -66,10 +52,9 @@ const research = ({ handleSearch }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/restaurants/country?address=${research}`
+          `http://localhost:3000/restaurants/country?address=${research}&type=${type}&page=${page}`
         );
-        console.log(response.data);
-        console.log(data.type);
+
         setData(response.data.restaurants);
         setCounter(response.data.count);
         setIsLoading(false);
@@ -78,7 +63,7 @@ const research = ({ handleSearch }) => {
       }
     };
     fetchData();
-  }, [research]);
+  }, [research, type, page]);
 
   return IsLoading ? (
     <p>Is loading</p>
@@ -87,7 +72,7 @@ const research = ({ handleSearch }) => {
       <section>
         <p>Results for "{research}"</p>
         <span>
-          <input type="text" placeholder={research} onChange={handleSearch} />
+          <input type="text" onChange={handleSearch} />
           <button className="icon" onClick={handleSearch}>
             <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
           </button>
@@ -95,29 +80,74 @@ const research = ({ handleSearch }) => {
         <div className="filter">
           <button
             onClick={() => {
-              type = "vegan";
+              console.log("clic vegan");
+              setType("vegan");
             }}
           >
             <img src={veganlogo} alt="logo vegan" />
             Végan
           </button>
-          <button>
+          <button
+            onClick={() => {
+              console.log("clic vegé");
+              setType("vegetarian");
+            }}
+          >
             <img src={veggielogo} alt="logo végé" /> Vegetarian
           </button>
-          <button>
+          <button
+            onClick={() => {
+              console.log("clic vegOptions");
+              setType("veg-options");
+            }}
+          >
             <img src={vegoptlogo} alt="logo végéOptions" />
             Veg-options
           </button>
+          <button
+            onClick={() => {
+              console.log("clic vegOptions");
+              setType("");
+            }}
+          >
+            Reset filters
+          </button>
         </div>
-        <nav>{displayPage(numberOfPage)}</nav>
+        <nav>
+          <button
+            onClick={() => {
+              console.log(`page ${page - 1}`);
+              setPage(page - 1);
+            }}
+          >
+            <FontAwesomeIcon
+              icon="fa-solid fa-angle-left"
+              style={{ color: "#a2a5a9" }}
+            />
+          </button>
+          {displayPage(numberOfPage)}
+          <button
+            onClick={() => {
+              console.log(`page ${page + 1}`);
+              setPage(page + 1);
+            }}
+          >
+            <FontAwesomeIcon
+              icon="fa-solid fa-angle-right"
+              style={{ color: "#a2a5a9" }}
+            />
+          </button>
+        </nav>
         <div className="wrap2">
           {data.map((elem) => {
             return (
               <div className="card">
-                <img src={elem.pictures[0]} alt="premiere photo" />
-                <h5>{elem.name}</h5>
-                <p>{displaystars(elem.rating)}</p>
-                <p>{elem.type}</p>
+                <Link to={`/restaurant/${elem.placeId}`}>
+                  <img src={elem.pictures[0]} alt="premiere photo" />
+                  <h5>{elem.name}</h5>
+                  <p>{displaystars(elem.rating)}</p>
+                  <p>{elem.type}</p>
+                </Link>
               </div>
             );
           })}
@@ -137,6 +167,25 @@ const research = ({ handleSearch }) => {
             />
             <div>
               {data.map((elem) => {
+                let iconImg = "";
+
+                if (elem.type === "vegan") {
+                  iconImg = veganIcon;
+                } else if (elem.type === "vegetarian") {
+                  iconImg = vegeIcon;
+                } else if (elem.type === "veg-options") {
+                  iconImg = vegOption;
+                } else if (elem.type === "Veg Store") {
+                  iconImg = vegShop;
+                } else {
+                  iconImg = otherLogo;
+                }
+
+                const icon = new L.Icon({
+                  iconUrl: iconImg,
+                  iconSize: [30, 35],
+                });
+
                 return (
                   <Marker
                     position={[elem.location.lat, elem.location.lng]}

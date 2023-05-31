@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Hero from "../components/Hero/Hero";
-
+import Modal from "../components/Modal/Modal";
 import RestaurantCard from "../components/RestaurantCard/RestaurantCard";
 
 const Home = () => {
@@ -13,7 +13,6 @@ const Home = () => {
     setResearch(event.target.value);
   };
 
-  console.log(research);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,6 +40,7 @@ const Home = () => {
           })}
         </div>
       </section>
+      {/* <Modal setVisible={setVisible} /> */}
     </div>
   );
 };
