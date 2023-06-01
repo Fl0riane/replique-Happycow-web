@@ -1,7 +1,7 @@
 import logo from "../../assets/img/happycow-logo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Header = ({ setVisible, visible, research }) => {
   return (
     <header>

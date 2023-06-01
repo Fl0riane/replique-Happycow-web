@@ -1,47 +1,57 @@
 import "./researchPage.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
+//------------------utils----------------------//
 import displaystars from "../../utils/displaystars";
+import displayLogo from "../../utils/displayLogo";
+
+//-----------------logo------------------------------//
+
 import veganlogo from "../../assets/img/category_vegan.png";
 import veggielogo from "../../assets/img/category_vegetarian.png";
 import vegoptlogo from "../../assets/img/category_veg-options.png";
 
+//-------------------icon------------------------------//
 import veganIcon from "../../assets/img/vegan_marker.png";
 import vegeIcon from "../../assets/img/vegetarian_marker.png";
 import vegOption from "../../assets/img/veg_options_marker.png";
 import vegShop from "../../assets/img/veg_shop_marker.png";
-import otherLogo from "../../assets/img/other_marker.png";
+import heathlStoreIcon from "../../assets/img/health_store_marker.png";
+import bakeryIcon from "../../assets/img/bakery_marker.png";
+import juiceBarIcon from "../../assets/img/juice_bar_marker.png";
+import coffeeIcon from "../../assets/img/coffee_marker.png";
+import IceCreamIcon from "../../assets/img/ice_cream_marker.png";
+import spaIcon from "../../assets/img/spa_marker.png";
+import other from "../../assets/img/other_marker.png";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-
-const research = ({ handleSearch, research }) => {
-  const location = useLocation();
+const researchPage = ({ handleSearch, research }) => {
   const [data, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const [type, setType] = useState("");
   const [page, setPage] = useState(1);
   const numberOfPage = Math.ceil(counter / 81);
+  const changeCase = (elem) => {
+    return elem.toUpperCase();
+  };
 
   const displayPage = (numberOfPage) => {
     const tab = [];
-    if (numberOfPage > 1) {
-      for (let i = 0; i < numberOfPage; i++) {
-        tab.push(
-          <button
-            onClick={() => {
-              console.log(numberOfPage);
-              setPage(i);
-            }}
-          >
-            {i + 1}
-          </button>
-        );
-      }
-    } else tab.push(<button>1</button>);
+    for (let i = 1; i <= numberOfPage; i++) {
+      tab.push(
+        <button
+          onClick={() => {
+            setPage(i);
+          }}
+        >
+          {i}
+        </button>
+      );
+    }
     return tab;
   };
 
@@ -69,15 +79,20 @@ const research = ({ handleSearch, research }) => {
       <section>
         <p>Results for "{research}"</p>
         <span>
-          <input type="text" onChange={handleSearch} />
-          <button className="icon" onClick={handleSearch}>
-            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+          <input type="text" onChange={handleSearch} value={research} />
+          <button className="icon">
+            <FontAwesomeIcon
+              icon="fa-solid fa-magnifying-glass"
+              size="xl"
+              style={{ color: "#fcfcfd" }}
+            />
           </button>
         </span>
         <div className="filter">
           <button
             onClick={() => {
               console.log("clic vegan");
+
               setType("vegan");
             }}
           >
@@ -110,7 +125,7 @@ const research = ({ handleSearch, research }) => {
             Reset filters
           </button>
         </div>
-        <nav>
+        <div className="pagin">
           <button
             onClick={() => {
               console.log(`page ${page - 1}`);
@@ -119,10 +134,11 @@ const research = ({ handleSearch, research }) => {
           >
             <FontAwesomeIcon
               icon="fa-solid fa-angle-left"
+              size="xl"
               style={{ color: "#a2a5a9" }}
             />
           </button>
-          {displayPage(numberOfPage)}
+          <nav>{displayPage(numberOfPage)}</nav>{" "}
           <button
             onClick={() => {
               console.log(`page ${page + 1}`);
@@ -131,33 +147,67 @@ const research = ({ handleSearch, research }) => {
           >
             <FontAwesomeIcon
               icon="fa-solid fa-angle-right"
+              size="xl"
               style={{ color: "#a2a5a9" }}
             />
           </button>
-        </nav>
+        </div>
         <div className="wrap2">
           {data.map((elem) => {
-            let className = "";
+            let hoverClassName = "";
+            let borderClass = "";
 
             if (elem.type === "vegan") {
-              className = "green";
+              hoverClassName = "green";
+              borderClass = "greenBorder";
             } else if (elem.type === "vegetarian") {
-              className = "purple";
+              hoverClassName = "purple";
+              borderClass = "purpleBorder";
             } else if (elem.type === "veg-options") {
-              className = "red";
+              hoverClassName = "red";
+              borderClass = "redBorder";
             } else if (elem.type === "Veg Store") {
-              className = "green2";
+              hoverClassName = "green";
+              borderClass = "blueBorder";
+            } else if (elem.type === "Health Store") {
+              hoverClassName = "yellow";
+              borderClass = "blueBorder";
+            } else if (elem.type === "Bakery") {
+              hoverClassName = "brown";
+              borderClass = "blueBorder";
+            } else if (elem.type === "Juice Bar") {
+              hoverClassName = "beige";
+              borderClass = "blueBorder";
+            } else if (elem.type === "Coffee") {
+              hoverClassName = "lightbrown";
+              borderClass = "blueBorder";
+            } else if (elem.type === "Ice Cream") {
+              hoverClassName = "pink";
+              borderClass = "blueBorder";
+            } else if (elem.type === "Spa") {
+              hoverClassName = "lightblue";
+              borderClass = "blueBorder";
             } else {
-              className = "bleu";
+              hoverClassName = "blue";
+              borderClass = "greenBorder";
             }
 
             return (
-              <div className="card .classname">
+              <div className={`card ${borderClass}`} key={elem.id}>
                 <Link to={`/restaurant/${elem.placeId}`}>
+                  <div className={hoverClassName}>
+                    <h5> {displayLogo(elem.type)}</h5>
+                    <h5> {changeCase(elem.type)}</h5>
+                    <h4 style={{ fontWeight: "600" }}>
+                      {changeCase(elem.name)}
+                    </h4>
+                    <h5>{elem.address}</h5>
+                  </div>
+
                   <img src={elem.pictures[0]} alt="premiere photo" />
+
                   <h5>{elem.name}</h5>
                   <p>{displaystars(elem.rating)}</p>
-                  <p>{elem.type}</p>
                 </Link>
               </div>
             );
@@ -179,23 +229,30 @@ const research = ({ handleSearch, research }) => {
             <div>
               {data.map((elem) => {
                 let iconImg = "";
-                let className = "";
 
+                iconImg = vegShop;
                 if (elem.type === "vegan") {
-                  className = "green";
                   iconImg = veganIcon;
                 } else if (elem.type === "vegetarian") {
                   iconImg = vegeIcon;
-                  className = "purple";
                 } else if (elem.type === "veg-options") {
                   iconImg = vegOption;
-                  className = "red";
                 } else if (elem.type === "Veg Store") {
                   iconImg = vegShop;
-                  className = "green2";
+                } else if (elem.type === "Health Store") {
+                  iconImg = heathlStoreIcon;
+                } else if (elem.type === "Bakery") {
+                  iconImg = bakeryIcon;
+                } else if (elem.type === "Juice Bar") {
+                  iconImg = juiceBarIcon;
+                } else if (elem.type === "Coffee") {
+                  iconImg = coffeeIcon;
+                } else if (elem.type === "Ice Cream") {
+                  iconImg = IceCreamIcon;
+                } else if (elem.type === "Spa") {
+                  iconImg = spaIcon;
                 } else {
-                  iconImg = otherLogo;
-                  className = "bleu";
+                  iconImg = other;
                 }
 
                 const icon = new L.Icon({
@@ -207,10 +264,13 @@ const research = ({ handleSearch, research }) => {
                   <Marker
                     position={[elem.location.lat, elem.location.lng]}
                     icon={icon}
+                    key={elem.id}
                   >
                     <Popup className="custom-popup">
                       <img src={elem.pictures[0]} alt="img" />
-                      <h4>{elem.name}</h4>
+                      <Link to={`/restaurant/${elem.placeId}`}>
+                        <h4>{elem.name}</h4>
+                      </Link>
                       <p>{displaystars(elem.rating)}</p>
                       <h3>{elem.address}</h3>
                     </Popup>
@@ -224,4 +284,4 @@ const research = ({ handleSearch, research }) => {
     </main>
   );
 };
-export default research;
+export default researchPage;

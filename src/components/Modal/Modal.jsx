@@ -3,9 +3,8 @@ import logoWhite from "../../assets/img/hc-logo-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logoGoogle from "../../assets/img/google.png";
 import { useState } from "react";
-import LoginForm from "../LoginForm/LoginForm";
-import { Link } from "react-router-dom";
-import SignUpForm from "../SignUpForm/SignUpForm";
+import LoginForm from "../Forms/LoginForm";
+import SignUpForm from "../Forms/SignUpForm";
 
 const Modal = ({ handleUserData, setVisible, visible }) => {
   const [isActive, setActive] = useState(false);

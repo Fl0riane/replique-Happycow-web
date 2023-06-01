@@ -32,6 +32,38 @@
   overflow-y: scroll;
 }
 
+.pagin {
+  box-sizing: border-box;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.researchPage nav {
+  box-sizing: border-box;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+
+  width: 50%;
+  height: 60px;
+  padding: 10px;
+}
+
+.researchPage nav button {
+  color: #a2a5a9;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.researchPage nav button:focus {
+  color: white;
+  background-color: #7c4ec4;
+}
+
 .filter {
   display: flex;
   align-items: center;
@@ -58,6 +90,7 @@
 }
 
 .card {
+  position: relative;
   width: 286px;
   height: 235px;
   border: 1px solid #dddd;
@@ -75,6 +108,22 @@
 .card p {
   margin-top: 10px;
   font-size: 12px;
+}
+
+.card h4 {
+  margin-top: 10px;
+  font-size: 12px;
+}
+.card div {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  top: 0;
+  position: absolute;
+}
+.card div img {
+  height: 50px;
+  width: 50px;
 }
 .BigMap {
   width: 100%;
@@ -95,6 +144,12 @@
 .custom-popup .leaflet-popup-content-wrapper h4 {
   font-size: 18px;
   color: #7c4ec4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .custom-popup .leaflet-popup-content-wrapper img {
@@ -120,6 +175,110 @@
   width: 30px;
   height: 15px;
 }
+
+.green,
+.purple,
+.red,
+.blue,
+.yellow,
+.brown,
+.beige,
+.lightbrown,
+.pink,
+.lightblue {
+  box-sizing: border-box;
+  padding: 10px 25px;
+  border-radius: 5px;
+  opacity: 0;
+}
+.green {
+  border-bottom: 2px solid #2a8b42;
+}
+
+.green:hover,
+.purple:hover,
+.red:hover,
+.blue:hover,
+.yellow:hover,
+.brown:hover,
+.beige:hover,
+.lightbrown:hover,
+.pink:hover,
+.lightblue:hover {
+  opacity: 85%;
+  color: white;
+}
+
 .green:hover {
-  background-color: green;
+  background-color: #2a8b42;
+}
+
+.purple:hover {
+  background-color: #89288f;
+}
+
+.red:hover {
+  background-color: #dc5d5c;
+}
+
+.yellow:hover {
+  background-color: #b7aa2a;
+}
+
+.brown:hover {
+  background-color: #824b1d;
+}
+
+.beige:hover {
+  background-color: #f4b855;
+}
+.lightbrown:hover {
+  background-color: #c27900;
+}
+.pink:hover {
+  background-color: #ef447f;
+}
+.lightblue:hover {
+  background-color: #3ed6d0;
+}
+.blue:hover {
+  background-color: #598bcf;
+}
+
+green:hover h5,
+.purple:hover h5,
+.red:hover h5,
+.blue:hover h5,
+.yellow:hover h5,
+.brown:hover h5,
+.beige:hover h5,
+.lightbrown:hover h5,
+.pink:hover h5,
+.lightblue:hover h5 {
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+  font-size: 10px;
+  color: white;
+}
+.green:hover h4,
+.purple:hover h4,
+.red:hover h4,
+.blue:hover h4,
+.yellow:hover h4,
+.brown:hover h4,
+.beige:hover h4,
+.lightbrown:hover h4,
+.pink:hover h4,
+.lightblue:hover h4 {
+  line-height: 15px;
+  padding: 10px;
+  border-top: 1px solid white;
+  font-weight: 300;
+  font-size: 12px;
+  color: white;
+}
+
+.card .blueBorder {
+  border-bottom: #598bcf;
 }

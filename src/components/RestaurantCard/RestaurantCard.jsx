@@ -4,15 +4,20 @@ import "./restaurantCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import displayLogo from "../../utils/displayLogo";
 
-const RestaurantCard = (props, index) => {
+const RestaurantCard = (props, { addFavorite }) => {
   // console.log(props);
 
   return (
     <section className="bloc">
       <div className="imgBloc">
-        <button>
+        <button
+          onClick={() => {
+            addFavorite(props.elem);
+          }}
+        >
           <FontAwesomeIcon icon="fa-regular fa-heart" />
         </button>
+
         <Link to={`/restaurant/${props.elem.placeId}`}>
           <img src={props.elem.pictures[0]} alt="restaurant pic" />
         </Link>

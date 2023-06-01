@@ -10,11 +10,16 @@ import L from "leaflet";
 import "./restaurant.css";
 import veganIcon from "../../assets/img/vegan_marker.png";
 import vegeIcon from "../../assets/img/vegetarian_marker.png";
-import vegOption from "../../assets/img/veg_options_marker.png";
-import vegShop from "../../assets/img/veg_shop_marker.png";
+import vegOptionIcon from "../../assets/img/veg_options_marker.png";
+import vegShopIcon from "../../assets/img/veg_shop_marker.png";
+import healthStoreIcon from "../../assets/img/health_store_marker.png";
+import bakeryIcon from "../../assets/img/bakery_marker.png";
 import otherLogo from "../../assets/img/other_marker.png";
-
-const Restaurant = ({ placeId }) => {
+import juiceIcon from "../../assets/img/juice_bar_marker.png";
+import coffeeLogo from "../../assets/img/coffee_marker.png";
+import iceLogo from "../../assets/img/ice_cream_marker.png";
+import spaLogo from "../../assets/img/spa_marker.png";
+const Restaurant = ({ handleUserData }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
@@ -32,9 +37,21 @@ const Restaurant = ({ placeId }) => {
   } else if (data.type === "vegetarian") {
     iconImg = vegeIcon;
   } else if (data.type === "veg-options") {
-    iconImg = vegOption;
+    iconImg = vegOptionIcon;
   } else if (data.type === "Veg Store") {
-    iconImg = vegShop;
+    iconImg = vegShopIcon;
+  } else if (data.type === "Health Store") {
+    iconImg = healthStoreIcon;
+  } else if (data.type === "Bakery") {
+    iconImg = bakeryIcon;
+  } else if (data.type === "Juice Bar") {
+    iconImg = juiceIcon;
+  } else if (data.type === "Coffee") {
+    iconImg = coffeeLogo;
+  } else if (data.type === "Ice Cream") {
+    iconImg = iceLogo;
+  } else if (data.type === "Spa") {
+    iconImg = spaLogo;
   } else {
     iconImg = otherLogo;
   }

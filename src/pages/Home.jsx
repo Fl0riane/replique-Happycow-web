@@ -5,7 +5,7 @@ import Hero from "../components/Hero/Hero";
 import Modal from "../components/Modal/Modal";
 import RestaurantCard from "../components/RestaurantCard/RestaurantCard";
 
-const Home = ({ handleSearch, research }) => {
+const Home = ({ handleSearch, research, handleUserData, setFavorites }) => {
   const [data, setData] = useState();
   const [IsLoading, setIsLoading] = useState(true);
 
@@ -32,7 +32,14 @@ const Home = ({ handleSearch, research }) => {
         <h2>Vegan Food Near Me</h2>
         <div className=" wrap">
           {data.restaurants.map((elem) => {
-            return <RestaurantCard elem={elem} key={elem.placeId} />;
+            return (
+              <RestaurantCard
+                handleUserData={handleUserData}
+                setFavorites={setFavorites}
+                elem={elem}
+                key={elem.placeId}
+              />
+            );
           })}
         </div>
       </section>

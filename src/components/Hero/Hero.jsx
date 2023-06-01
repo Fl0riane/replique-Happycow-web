@@ -10,14 +10,19 @@ const Hero = ({ handleSearch, research }) => {
       <span>
         <input
           type="text"
+          value={research}
           placeholder="Search for city"
           onChange={handleSearch}
         />
 
         <p className="icon">
-          <button onClick={handleSearch}>
+          <button>
             <Link to="/research/country">
-              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+              <FontAwesomeIcon
+                icon="fa-solid fa-magnifying-glass"
+                size="xl"
+                style={{ color: "#fcfcfd" }}
+              />
             </Link>
           </button>
         </p>
