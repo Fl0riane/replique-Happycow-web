@@ -8,7 +8,17 @@
   position: relative;
   border-radius: 5px;
 }
-
+.blocImgReplace {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 200px;
+  width: 671px;
+  border: 1px solid #cccc;
+  border-radius: 8px;
+}
 .littlePic {
   height: 100%;
   width: 167px;
@@ -57,8 +67,9 @@
   all: unset;
   padding: 10px 0;
   color: #9069cd;
-  font-weight: bold;
+  font-weight: 600;
 }
+
 .star {
   margin-bottom: 20px;
 }

@@ -125,6 +125,23 @@
   height: 50px;
   width: 50px;
 }
+.imgReplace {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+
+  padding-bottom: 5px;
+  width: 100%;
+  height: 130px;
+}
+.imgReplace img {
+  margin-top: 5px;
+  height: 50px;
+  width: 50px;
+}
+
 .BigMap {
   width: 100%;
   height: 100vh;

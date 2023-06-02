@@ -5,7 +5,13 @@ import Hero from "../components/Hero/Hero";
 import Modal from "../components/Modal/Modal";
 import RestaurantCard from "../components/RestaurantCard/RestaurantCard";
 
-const Home = ({ handleSearch, research, handleUserData, setFavorites }) => {
+const Home = ({
+  handleSearch,
+  research,
+  handleUserData,
+  setFavorites,
+  addFavorite,
+}) => {
   const [data, setData] = useState();
   const [IsLoading, setIsLoading] = useState(true);
 
@@ -15,7 +21,7 @@ const Home = ({ handleSearch, research, handleUserData, setFavorites }) => {
         const response = await axios.get("http://localhost:3000/restaurants");
         setData(response.data);
         setIsLoading(false);
-        // console.log(response.data);
+        console.log(response.data);
       } catch (error) {
         console.log(error.message);
       }
@@ -34,10 +40,11 @@ const Home = ({ handleSearch, research, handleUserData, setFavorites }) => {
           {data.restaurants.map((elem) => {
             return (
               <RestaurantCard
+                key={elem.placeId}
                 handleUserData={handleUserData}
                 setFavorites={setFavorites}
+                addFavorite={addFavorite}
                 elem={elem}
-                key={elem.placeId}
               />
             );
           })}

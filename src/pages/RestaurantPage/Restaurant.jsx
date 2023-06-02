@@ -91,25 +91,41 @@ const Restaurant = ({ handleUserData }) => {
       </div>
       <div className="row">
         <section className="leftCol">
-          <div className="blocImg">
-            {data.pictures.map((elem, index) => {
-              return (
-                <div key={index}>
-                  <img className="littlePic" src={elem} alt="restaurant pic" />
-                </div>
-              );
-            })}
-            {data.pictures.length > 4 && (
-              <button
-                onClick={() => {
-                  setHidden(false);
-                }}
-              >
-                <FontAwesomeIcon icon="fa-solid fa-camera" />
-                <p>All Photos</p> <p>({data.pictures.length})</p>
-              </button>
-            )}
-          </div>
+          {data.pictures.length > 0 ? (
+            <div className="blocImg">
+              {data.pictures.map((elem, index) => {
+                return (
+                  <div key={index}>
+                    <img
+                      className="littlePic"
+                      src={elem}
+                      alt="restaurant pic"
+                    />
+                  </div>
+                );
+              })}
+              {data.pictures.length > 4 && (
+                <button
+                  onClick={() => {
+                    setHidden(false);
+                  }}
+                >
+                  <FontAwesomeIcon icon="fa-solid fa-camera" />
+                  <p>All Photos</p> <p>({data.pictures.length})</p>
+                </button>
+              )}
+            </div>
+          ) : (
+            <div className="blocImgReplace">
+              <p>Been here? Please help us!</p>
+              <FontAwesomeIcon
+                icon="fa-solid fa-camera"
+                size="xl"
+                style={{ color: "#9069cd" }}
+              />
+              <p>Add your photos</p>
+            </div>
+          )}
 
           <p>{data.description}</p>
         </section>
@@ -141,7 +157,7 @@ const Restaurant = ({ handleUserData }) => {
 
             <span>
               <FontAwesomeIcon icon="fa-solid fa-clock" />
-              <p>{open(data.description)}</p>
+              {data.description ? <p>{open(data.description)}</p> : ""}
             </span>
             <span>
               <FontAwesomeIcon icon="fa-solid fa-phone" />

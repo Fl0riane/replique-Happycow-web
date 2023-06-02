@@ -47,26 +47,31 @@ import Modal from "./components/Modal/Modal";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("hc-Token") || null);
-  const [favorites, setFavorites] = useState(Cookies.get("hc-Favorites") || []);
 
   const [visible, setVisible] = useState(false);
   const [research, setResearch] = useState("");
   const handleSearch = (event) => {
     setResearch(event.target.value);
   };
-
+  const fav = Cookies.get("hc-Favorites");
+  const [favorites, setFavorites] = useState(fav ? [JSON.parse(fav)] : []);
   const addFavorite = (item) => {
-    const newTab = tab.push(item);
-    Cookies.set("hc-Favorites", JSON.stringify([newTab], { expires: 14 }));
+    const newTab = [...favorites];
+    const find = newTab.find((element) => element.placeId === item.placeId);
+    {
+      find
+        ? newTab.push(item)
+        : newTab.filter((element) => element.placeId !== item.placeId);
+    }
+
+    setFavorites(newTab);
+    Cookies.set("hc-Favorites", JSON.stringify(newTab), { expires: 14 });
   };
 
   const handleUserData = (userData) => {
     if (userData && userData.token) {
       const { token } = userData;
-      const { favorites } = userData;
       setToken(token);
-      setFavorites(favorites);
-
       Cookies.set("hc-Token", token, { expires: 14 });
     } else {
       setToken(null);
@@ -121,7 +126,7 @@ function App() {
           element={
             <AddListPage
               handleUserData={handleUserData}
-              addFavorite={addFavorite}
+              favorites={favorites}
               setFavorites={setFavorites}
             />
           }

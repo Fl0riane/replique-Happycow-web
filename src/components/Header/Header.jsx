@@ -16,7 +16,7 @@ const Header = ({ setVisible, visible, research }) => {
         </button>
 
         <button>
-          <Link to="/addList"> Add Listing</Link>
+          <Link to="/addList"> Favoris</Link>
         </button>
 
         <button

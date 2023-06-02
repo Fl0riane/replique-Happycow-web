@@ -61,6 +61,7 @@ const researchPage = ({ handleSearch, research }) => {
         const response = await axios.get(
           `http://localhost:3000/restaurants/country?address=${research}&type=${type}&page=${page}`
         );
+        console.log(response.data.restaurants);
 
         setData(response.data.restaurants);
         setCounter(response.data.count);
@@ -193,7 +194,7 @@ const researchPage = ({ handleSearch, research }) => {
             }
 
             return (
-              <div className={`card ${borderClass}`} key={elem.id}>
+              <div className={`card ${borderClass}`} key={elem.placeId}>
                 <Link to={`/restaurant/${elem.placeId}`}>
                   <div className={hoverClassName}>
                     <h5> {displayLogo(elem.type)}</h5>
@@ -203,8 +204,14 @@ const researchPage = ({ handleSearch, research }) => {
                     </h4>
                     <h5>{elem.address}</h5>
                   </div>
-
-                  <img src={elem.pictures[0]} alt="premiere photo" />
+                  {elem.pictures.length > 0 ? (
+                    <img src={elem.pictures[0]} alt="premiere photo" />
+                  ) : (
+                    <span className="imgReplace">
+                      {displayLogo(elem.type)}
+                      <p>Add Photos</p>
+                    </span>
+                  )}
 
                   <h5>{elem.name}</h5>
                   <p>{displaystars(elem.rating)}</p>

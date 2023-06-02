@@ -3,23 +3,27 @@ import displayStars from "../../utils/displaystars";
 import "./restaurantCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import displayLogo from "../../utils/displayLogo";
-
-const RestaurantCard = (props, { addFavorite }) => {
-  // console.log(props);
-
+import Cookies from "js-cookie";
+const RestaurantCard = (props) => {
+  const item = props.elem;
+  const addFavorite = props.addFavorite;
   return (
-    <section className="bloc">
-      <div className="imgBloc">
+    <section className="bloc" key={props.elem.paceId}>
+      <div className="imgBloc ">
         <button
           onClick={() => {
-            addFavorite(props.elem);
+            addFavorite(item);
           }}
         >
           <FontAwesomeIcon icon="fa-regular fa-heart" />
         </button>
 
         <Link to={`/restaurant/${props.elem.placeId}`}>
-          <img src={props.elem.pictures[0]} alt="restaurant pic" />
+          {props.elem.pictures ? (
+            <img src={props.elem.pictures[0]} alt="restaurant pic" />
+          ) : (
+            <div>{displayLogo(props.elem.type)}</div>
+          )}
         </Link>
       </div>
       <div>
