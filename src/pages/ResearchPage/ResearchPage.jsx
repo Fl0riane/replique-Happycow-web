@@ -59,7 +59,7 @@ const researchPage = ({ handleSearch, research }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/restaurants/country?address=${research}&type=${type}&page=${page}`
+          `https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/restaurants/country?address=${research}&type=${type}&page=${page}`
         );
         console.log(response.data.restaurants);
 
@@ -271,7 +271,7 @@ const researchPage = ({ handleSearch, research }) => {
                   <Marker
                     position={[elem.location.lat, elem.location.lng]}
                     icon={icon}
-                    key={elem.id}
+                    key={elem._id}
                   >
                     <Popup className="custom-popup">
                       <img src={elem.pictures[0]} alt="img" />

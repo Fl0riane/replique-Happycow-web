@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import Hero from "../components/Hero/Hero";
-import Modal from "../components/Modal/Modal";
 import RestaurantCard from "../components/RestaurantCard/RestaurantCard";
 
 const Home = ({
@@ -11,6 +9,7 @@ const Home = ({
   handleUserData,
   setFavorites,
   addFavorite,
+  favorites,
 }) => {
   const [data, setData] = useState();
   const [IsLoading, setIsLoading] = useState(true);
@@ -18,7 +17,9 @@ const Home = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/restaurants");
+        const response = await axios.get(
+          "https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run//restaurants"
+        );
         setData(response.data);
         setIsLoading(false);
         console.log(response.data);
@@ -38,11 +39,13 @@ const Home = ({
         <h2>Vegan Food Near Me</h2>
         <div className=" wrap">
           {data.restaurants.map((elem) => {
+            console.log(elem.placeId);
             return (
               <RestaurantCard
                 key={elem.placeId}
                 handleUserData={handleUserData}
                 setFavorites={setFavorites}
+                favorites={favorites}
                 addFavorite={addFavorite}
                 elem={elem}
               />

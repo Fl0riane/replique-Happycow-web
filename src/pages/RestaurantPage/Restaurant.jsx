@@ -65,7 +65,7 @@ const Restaurant = ({ handleUserData }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://res.cloudinary.com/lereacteur-apollo/raw/upload/v1575242111/10w-full-stack/Scraping/restaurants.json"
+          "https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/restaurants"
         );
         const restaurant = response.data.find(
           (element) => element.placeId.toString() === id

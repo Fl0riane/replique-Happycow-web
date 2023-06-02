@@ -16,6 +16,7 @@ import {
   faCamera,
   faAngleLeft,
   faAngleRight,
+  faHeart as faSolidHeart,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -23,6 +24,7 @@ library.add(
   faStar,
   faStarHalfStroke,
   faHeart,
+  faSolidHeart,
   faLocationDot,
   faClock,
   faPhone,
@@ -54,13 +56,12 @@ function App() {
     setResearch(event.target.value);
   };
   const fav = Cookies.get("hc-Favorites");
-  // console.log("fav", fav);
+
   const [favorites, setFavorites] = useState(fav ? JSON.parse(fav) : []);
   const addFavorite = (item) => {
     const newTab = [...favorites];
-    // console.log("fav", favorites);
-    // console.log("log newTab", newTab);
-    const find = newTab.find((element) => console.log(element.placeId));
+
+    const find = newTab.find((element) => element.placeId === item.placeId);
 
     console.log("log  find", find);
     if (find) {
@@ -72,8 +73,8 @@ function App() {
       Cookies.set("hc-Favorites", JSON.stringify(favtab), { expires: 14 });
     } else {
       console.log("else");
-      console.log(item);
       newTab.push(item);
+      setFavorites(newTab);
       Cookies.set("hc-Favorites", JSON.stringify(newTab), { expires: 14 });
     }
   };
@@ -107,6 +108,7 @@ function App() {
               handleUserData={handleUserData}
               addFavorite={addFavorite}
               setFavorites={setFavorites}
+              favorites={favorites}
             />
           }
         />

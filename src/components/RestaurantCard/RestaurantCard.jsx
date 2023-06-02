@@ -3,10 +3,14 @@ import displayStars from "../../utils/displaystars";
 import "./restaurantCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import displayLogo from "../../utils/displayLogo";
-import Cookies from "js-cookie";
+
 const RestaurantCard = (props) => {
   const item = props.elem;
   const addFavorite = props.addFavorite;
+  const favorites = props.favorites;
+
+  const find = favorites.find((element) => element.placeId === item.placeId);
+
   return (
     <section className="bloc" key={props.elem.paceId}>
       <div className="imgBloc ">
@@ -15,7 +19,14 @@ const RestaurantCard = (props) => {
             addFavorite(item);
           }}
         >
-          <FontAwesomeIcon icon="fa-regular fa-heart" />
+          {find ? (
+            <FontAwesomeIcon
+              icon="fa-solid fa-heart"
+              style={{ color: "#e10e19" }}
+            />
+          ) : (
+            <FontAwesomeIcon icon="fa-regular fa-heart" />
+          )}
         </button>
 
         <Link to={`/restaurant/${props.elem.placeId}`}>
