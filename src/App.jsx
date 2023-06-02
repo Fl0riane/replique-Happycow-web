@@ -54,18 +54,28 @@ function App() {
     setResearch(event.target.value);
   };
   const fav = Cookies.get("hc-Favorites");
-  const [favorites, setFavorites] = useState(fav ? [JSON.parse(fav)] : []);
+  // console.log("fav", fav);
+  const [favorites, setFavorites] = useState(fav ? JSON.parse(fav) : []);
   const addFavorite = (item) => {
     const newTab = [...favorites];
-    const find = newTab.find((element) => element.placeId === item.placeId);
-    {
-      find
-        ? newTab.push(item)
-        : newTab.filter((element) => element.placeId !== item.placeId);
-    }
+    // console.log("fav", favorites);
+    // console.log("log newTab", newTab);
+    const find = newTab.find((element) => console.log(element.placeId));
 
-    setFavorites(newTab);
-    Cookies.set("hc-Favorites", JSON.stringify(newTab), { expires: 14 });
+    console.log("log  find", find);
+    if (find) {
+      console.log("je suis dans le if");
+      const favtab = newTab.filter(
+        (element) => element.placeId !== item.placeId
+      );
+      setFavorites(favtab);
+      Cookies.set("hc-Favorites", JSON.stringify(favtab), { expires: 14 });
+    } else {
+      console.log("else");
+      console.log(item);
+      newTab.push(item);
+      Cookies.set("hc-Favorites", JSON.stringify(newTab), { expires: 14 });
+    }
   };
 
   const handleUserData = (userData) => {
