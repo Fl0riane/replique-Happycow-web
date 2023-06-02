@@ -95,7 +95,7 @@ const Restaurant = ({ handleUserData }) => {
             <div className="blocImg">
               {data.pictures.map((elem, index) => {
                 return (
-                  <div key={index}>
+                  <div key={elem.placeId}>
                     <img
                       className="littlePic"
                       src={elem}
