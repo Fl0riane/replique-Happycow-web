@@ -25,7 +25,7 @@ const LoginForm = ({ handleUserData }) => {
         event.preventDefault();
         try {
           const response = await axios.post(
-            "https://site--back-end-happy-cow--p2d7k4xwpzzq.code.runuser/login",
+            "https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/user/login",
             { email: email, password: password }
           );
           if (response.data) {
