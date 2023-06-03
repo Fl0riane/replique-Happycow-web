@@ -13,7 +13,7 @@ const addList = ({ favorites }) => {
         return (
           <section key={elem.placeId}>
             <div className="card2" key={elem.placeId}>
-              <Link to={`/restaurant/${elem.placeId}`}>
+              <Link to={`/restaurant/${elem._id}`}>
                 {elem.pictures.length > 0 ? (
                   <img src={elem.pictures[0]} alt="premiere photo" />
                 ) : (

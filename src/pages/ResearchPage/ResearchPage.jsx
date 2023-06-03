@@ -195,7 +195,7 @@ const researchPage = ({ handleSearch, research }) => {
 
             return (
               <div className={`card ${borderClass}`} key={elem.placeId}>
-                <Link to={`/restaurant/${elem.placeId}`}>
+                <Link to={`/restaurant/${elem._id}`}>
                   <div className={hoverClassName}>
                     <h5> {displayLogo(elem.type)}</h5>
                     <h5> {changeCase(elem.type)}</h5>
@@ -275,7 +275,7 @@ const researchPage = ({ handleSearch, research }) => {
                   >
                     <Popup className="custom-popup">
                       <img src={elem.pictures[0]} alt="img" />
-                      <Link to={`/restaurant/${elem.placeId}`}>
+                      <Link to={`/restaurant/${elem._id}`}>
                         <h4>{elem.name}</h4>
                       </Link>
                       <p>{displaystars(elem.rating)}</p>

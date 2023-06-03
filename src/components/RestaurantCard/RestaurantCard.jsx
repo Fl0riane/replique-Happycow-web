@@ -29,7 +29,7 @@ const RestaurantCard = (props) => {
           )}
         </button>
 
-        <Link to={`/restaurant/${props.elem.placeId}`}>
+        <Link to={`/restaurant/${props.elem._id}`}>
           {props.elem.pictures ? (
             <img src={props.elem.pictures[0]} alt="restaurant pic" />
           ) : (
