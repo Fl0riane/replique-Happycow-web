@@ -77,7 +77,7 @@ const Restaurant = () => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [params.id]);
 
   return IsLoading ? (
     <p>is Laoding</p>
