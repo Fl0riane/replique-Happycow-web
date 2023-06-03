@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios, { all } from "axios";
+import axios from "axios";
 import displayStars from "../../utils/displaystars";
 import displayVeg from "../../utils/DisplayVeg/displayVeg";
 
@@ -67,7 +67,8 @@ const Restaurant = ({ handleUserData }) => {
         const response = await axios.get(
           `https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/restaurant/${id}`
         );
-        const restaurant = response.data.setData(restaurant);
+        const restaurant = response.data;
+        setData(restaurant);
 
         setIsLoading(false);
       } catch (error) {
