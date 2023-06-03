@@ -33,7 +33,7 @@ const SignUpForm = ({ handleUserData }) => {
         setErrormessage("");
         try {
           const response = await axios.post(
-            "https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/user/signup",
+            "https://site--back-end-happy-cow--p2d7k4xwpzzq.code.runuser/signup",
             {
               emai: email,
               username: username,

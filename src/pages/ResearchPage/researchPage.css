@@ -86,12 +86,13 @@
 .wrap2 {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 15px;
 }
 
 .card {
+  box-sizing: border-box;
+  width: calc((100% - 30px) / 3);
   position: relative;
-  width: 286px;
   height: 235px;
   border: 1px solid #dddd;
   text-align: center;
@@ -140,6 +141,9 @@
   margin-top: 5px;
   height: 50px;
   width: 50px;
+}
+.mapSection {
+  flex: 1;
 }
 
 .BigMap {
