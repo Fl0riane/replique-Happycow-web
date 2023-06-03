@@ -68,7 +68,7 @@ const Restaurant = ({ handleUserData }) => {
           `https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/restaurant/${id}`
         );
         const data = response.data;
-        console.log(data);
+        console.log("log data", data);
         setData(data);
 
         setIsLoading(false);
