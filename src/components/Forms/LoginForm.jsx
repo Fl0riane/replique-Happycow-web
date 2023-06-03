@@ -61,9 +61,8 @@ const LoginForm = ({ handleUserData }) => {
         name="password"
         onChange={handlePasswordChange}
       />
-
-      <button type="submit">Login</button>
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      <button type="submit">Login</button>
     </form>
   );
 };
