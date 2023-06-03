@@ -67,10 +67,7 @@ const Restaurant = ({ handleUserData }) => {
         const response = await axios.get(
           `https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/restaurant/${id}`
         );
-        const restaurant = response.data.find(
-          (element) => element.placeId.toString() === id
-        );
-        setData(restaurant);
+        const restaurant = response.data.setData(restaurant);
 
         setIsLoading(false);
       } catch (error) {
@@ -93,7 +90,7 @@ const Restaurant = ({ handleUserData }) => {
         <section className="leftCol">
           {data.pictures.length > 0 ? (
             <div className="blocImg">
-              {data.pictures.map((elem, index) => {
+              {data.pictures.map((elem) => {
                 return (
                   <div key={elem.placeId}>
                     <img
