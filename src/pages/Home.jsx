@@ -18,7 +18,7 @@ const Home = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://site--back-end-happy-cow--p2d7k4xwpzzq.code.runrestaurants"
+          "https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/restaurants"
         );
         setData(response.data);
         setIsLoading(false);
