@@ -5,7 +5,7 @@ import displayStars from "../../utils/displaystars";
 import displayVeg from "../../utils/DisplayVeg/displayVeg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 import "./restaurant.css";
 import veganIcon from "../../assets/img/vegan_marker.png";
@@ -19,9 +19,9 @@ import juiceIcon from "../../assets/img/juice_bar_marker.png";
 import coffeeLogo from "../../assets/img/coffee_marker.png";
 import iceLogo from "../../assets/img/ice_cream_marker.png";
 import spaLogo from "../../assets/img/spa_marker.png";
-const Restaurant = ({ handleUserData }) => {
-  const { id } = useParams();
-  const [data, setData] = useState([]);
+const Restaurant = () => {
+  const params = useParams();
+  const [data, setData] = useState({});
   const [IsLoading, setIsLoading] = useState(true);
   const [hidden, setHidden] = useState(true);
 
@@ -65,7 +65,7 @@ const Restaurant = ({ handleUserData }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/restaurant/${id}`
+          `https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/restaurant/${params.id}`
         );
         const data = response.data;
         console.log("log data", data);
