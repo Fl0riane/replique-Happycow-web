@@ -67,8 +67,8 @@ const Restaurant = ({ handleUserData }) => {
         const response = await axios.get(
           `https://site--back-end-happy-cow--p2d7k4xwpzzq.code.run/restaurant/${id}`
         );
-        const restaurant = response.data;
-        setData(restaurant);
+        const data = response.data;
+        setData(data);
 
         setIsLoading(false);
       } catch (error) {
