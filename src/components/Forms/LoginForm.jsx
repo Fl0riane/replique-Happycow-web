@@ -41,7 +41,7 @@ const LoginForm = ({ handleUserData }) => {
           console.log(error.message);
           console.log(error.response.status);
 
-          if (error.response === 401) {
+          if (error.response.status === 401) {
             setErromessage("Accès non autorisé");
           }
         }
